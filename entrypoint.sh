@@ -19,7 +19,7 @@ fi
 # if vpn isn't on, stop rtorrent if it's running and run vpn if file conf exist
 # if vpn is on, start rtorrent if it's not running
 while true; do
-    if ! pgrep openvpn > /dev/null || '0' == ifconfig | grep tun0 | wc -l ; then
+    if ! pgrep openvpn > /dev/null ; then
         if pgrep rtorrent > /dev/null; then
           echo "OpenVPN is not running, stopping rtorrent..."
           killall rtorrent
