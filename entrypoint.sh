@@ -21,8 +21,9 @@ fi
 while true; do
     if ! pgrep openvpn > /dev/null ; then
         if pgrep rtorrent > /dev/null; then
-          echo "OpenVPN is not running, stopping rtorrent..."
+          echo "OpenVPN is not running, stopping rtorrent & flood..."
           killall rtorrent
+          killall flood
           sleep 5
         fi
         echo "OpenVPN is not running, restarting..."
@@ -40,9 +41,14 @@ while true; do
           echo "OpenVPN is running, starting rtorrent..."
           sudo -S -u rtorrent  rtorrent&
           sleep 5
+          sudo -S -u rtorrent flood --host 0.0.0.0
+          sleep 5
+        fi
+        if ! pgrep flood > /dev/null; then
+          echo "Starting flood..."
+          sudo -S -u rtorrent flood --host 0.0.0.0
+          sleep 5
         fi
     fi
     sleep 5
 done
-
-sudo -S -u rtorrent flood --host 0.0.0.0
