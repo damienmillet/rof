@@ -11,6 +11,8 @@ ENV TIMEZONE Europe/Paris
 RUN apk update && apk upgrade && apk add  --no-cache rtorrent nano curl mediainfo openvpn sudo \
   && rm -rf /var/cache/apk/*
 
+RUN echo $TARGETARCH
+
 RUN wget "https://github.com/jesec/flood/releases/download/v4.7.0/flood-linux-$TARGETARCH" -O /usr/bin/flood \
   && chmod +x /usr/bin/flood
 
