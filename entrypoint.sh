@@ -38,7 +38,7 @@ while true; do
     else 
         if ! pgrep rtorrent > /dev/null; then
           echo "OpenVPN is running, starting rtorrent..."
-          sudo -S -u rtorrent  sudo -S -u rtorrent  rtorrent&
+          sudo -S -u rtorrent  rtorrent&
           sleep 5
         fi
     fi
